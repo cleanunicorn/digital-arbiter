@@ -3,4 +3,14 @@
 	{
 		"token": ""
 	}
+	, "digitalocean": {
+		"defaults":
+		{
+			"ssh_keys": []
+			, "name_prefix": ""
+			, "size": "512mb"
+			, "region": "ams1"
+			, "image": 5141286
+		}
+	}
 }
