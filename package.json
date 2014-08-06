@@ -4,7 +4,8 @@
   "description": "",
   "dependencies": {
     "express": "*",
-    "node-uuid": "^1.4.1"
+    "node-uuid": "^1.4.1",
+    "nautical": "*"
   },
   "main": "index.js",
   "scripts": {
