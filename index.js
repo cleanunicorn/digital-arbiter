@@ -63,6 +63,24 @@ application["delete"]('/droplets/:id', function(request, response) {
   })(request, response);
 });
 
+application.get('/droplets/:id/actions', function(request, response) {
+  console.log("Droplet " + request.params.id + " get actions");
+  return (function(request, response) {
+    return digitalocean.droplets.fetchActions(request.params.id, function(error, reply) {
+      return response.send(JSON.stringify(reply.body));
+    });
+  })(request, response);
+});
+
+application.get('/actions/:id', function(request, response) {
+  console.log("Get action " + request.params.id);
+  return (function(request, response) {
+    return digitalocean.actions.fetch(request.params.id, function(error, reply) {
+      return response.send(JSON.stringify(reply.body));
+    });
+  })(request, response);
+});
+
 application.get('/regions', function(request, response) {
   console.log('Regions');
   return digitalocean.regions.list(function(error, reply) {

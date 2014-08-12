@@ -66,6 +66,28 @@ application.delete \
 				, (error, reply)->
 					response.send JSON.stringify(reply.body)
 
+# Get actions executed on the droplet
+application.get \
+	'/droplets/:id/actions'
+	, (request, response)->
+		console.log "Droplet #{request.params.id} get actions"
+		do (request, response)->
+			digitalocean.droplets.fetchActions \
+				request.params.id
+				, (error, reply)->
+					response.send JSON.stringify(reply.body)
+
+# Get action by id from all actions on the account
+application.get \
+	'/actions/:id'
+	, (request, response)->
+		console.log "Get action #{request.params.id}"
+		do (request, response)->
+			digitalocean.actions.fetch \
+				request.params.id
+				, (error, reply)->
+					response.send JSON.stringify(reply.body)
+
 # Regions
 application.get \
 	'/regions'
