@@ -67,6 +67,36 @@ application.get('/actions/:id', function(request, response) {
   }
 });
 
+application.post('/droplets/:id/reboot', function(request, response) {
+  console.log("Mock Droplet " + request.params.id + " reboot");
+  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"reboot","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+});
+
+application.post('/droplets/:id/shutdown', function(request, response) {
+  console.log("Mock Droplet " + request.params.id + " shutdown");
+  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"shutdown","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+});
+
+application.post('/droplets/:id/power_on', function(request, response) {
+  console.log("Mock Droplet " + request.params.id + " power_on");
+  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"power_on","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+});
+
+application.post('/droplets/:id/power_off', function(request, response) {
+  console.log("Mock Droplet " + request.params.id + " power_off");
+  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"power_off","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+});
+
+application.post('/droplets/:id/power_cycle', function(request, response) {
+  console.log("Mock Droplet " + request.params.id + " power_cycle");
+  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"power_cycle","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+});
+
+application.post('/droplets/:id/resize/:size', function(request, response) {
+  console.log("Mock Droplet " + request.params.id + " resize to " + request.params.size);
+  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"resize","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+});
+
 application.get('/regions', function(request, response) {
   console.log('Regions');
   return digitalocean.regions.list(function(error, reply) {

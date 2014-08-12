@@ -78,6 +78,45 @@ application.get \
 			response.send '{"action":{"id":30451157,"status":"completed","type":"create","started_at":"2014-08-09T10:12:39Z","completed_at":"2014-08-09T10:15:04Z","resource_id":2292375,"resource_type":"droplet","region":"ams1"}}'
 
 
+# Droplet actions
+application.post \
+	'/droplets/:id/reboot'
+	, (request, response)->
+		console.log "Mock Droplet #{request.params.id} reboot"
+		response.send '{"action":{"id":30590219,"status":"in-progress","type":"reboot","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}'
+
+application.post \
+	'/droplets/:id/shutdown'
+	, (request, response)->
+		console.log "Mock Droplet #{request.params.id} shutdown"
+		response.send '{"action":{"id":30590219,"status":"in-progress","type":"shutdown","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}'
+
+application.post \
+	'/droplets/:id/power_on'
+	, (request, response)->
+		console.log "Mock Droplet #{request.params.id} power_on"
+		response.send '{"action":{"id":30590219,"status":"in-progress","type":"power_on","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}'
+
+application.post \
+	'/droplets/:id/power_off'
+	, (request, response)->
+		console.log "Mock Droplet #{request.params.id} power_off"
+		response.send '{"action":{"id":30590219,"status":"in-progress","type":"power_off","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}'
+
+application.post \
+	'/droplets/:id/power_cycle'
+	, (request, response)->
+		console.log "Mock Droplet #{request.params.id} power_cycle"
+		response.send '{"action":{"id":30590219,"status":"in-progress","type":"power_cycle","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}'
+
+application.post \
+	'/droplets/:id/resize/:size'
+	, (request, response)->
+		console.log "Mock Droplet #{request.params.id} resize to #{request.params.size}"
+		response.send '{"action":{"id":30590219,"status":"in-progress","type":"resize","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}'
+
+
+
 # Regions
 application.get \
 	'/regions'
