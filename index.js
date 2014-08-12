@@ -90,7 +90,7 @@ application.post('/droplets/:id/power_on', function(request, response) {
   })(request, response);
 });
 
-application.post('/droplets/:id/power_on', function(request, response) {
+application.post('/droplets/:id/power_off', function(request, response) {
   console.log("Droplet " + request.params.id + " power_off");
   return (function(request, response) {
     return digitalocean.dropletActions.powerOff(request.params.id, function(error, reply) {

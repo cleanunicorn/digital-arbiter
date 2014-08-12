@@ -98,7 +98,7 @@ application.post \
 					response.send JSON.stringify(reply.body)
 
 application.post \
-	'/droplets/:id/power_on'
+	'/droplets/:id/power_off'
 	, (request, response)->
 		console.log "Droplet #{request.params.id} power_off"
 		do (request, response)->
