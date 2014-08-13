@@ -63,6 +63,78 @@ application["delete"]('/droplets/:id', function(request, response) {
   })(request, response);
 });
 
+application.post('/droplets/:id/reboot', function(request, response) {
+  console.log("Droplet " + request.params.id + " reboot");
+  return (function(request, response) {
+    return digitalocean.dropletActions.reboot(request.params.id, function(error, reply) {
+      return response.send(JSON.stringify(reply.body));
+    });
+  })(request, response);
+});
+
+application.post('/droplets/:id/shutdown', function(request, response) {
+  console.log("Droplet " + request.params.id + " shutdown");
+  return (function(request, response) {
+    return digitalocean.dropletActions.shutdown(request.params.id, function(error, reply) {
+      return response.send(JSON.stringify(reply.body));
+    });
+  })(request, response);
+});
+
+application.post('/droplets/:id/power_on', function(request, response) {
+  console.log("Droplet " + request.params.id + " power_on");
+  return (function(request, response) {
+    return digitalocean.dropletActions.powerOn(request.params.id, function(error, reply) {
+      return response.send(JSON.stringify(reply.body));
+    });
+  })(request, response);
+});
+
+application.post('/droplets/:id/power_off', function(request, response) {
+  console.log("Droplet " + request.params.id + " power_off");
+  return (function(request, response) {
+    return digitalocean.dropletActions.powerOff(request.params.id, function(error, reply) {
+      return response.send(JSON.stringify(reply.body));
+    });
+  })(request, response);
+});
+
+application.post('/droplets/:id/power_cycle', function(request, response) {
+  console.log("Droplet " + request.params.id + " power_cycle");
+  return (function(request, response) {
+    return digitalocean.dropletActions.power_cycle(request.params.id, function(error, reply) {
+      return response.send(JSON.stringify(reply.body));
+    });
+  })(request, response);
+});
+
+application.post('/droplets/:id/resize/:size', function(request, response) {
+  console.log("Droplet " + request.params.id + " resize to " + request.params.size);
+  return (function(request, response) {
+    return digitalocean.dropletActions.resize(request.params.id, request.params.size, function(error, reply) {
+      return response.send(JSON.stringify(reply.body));
+    });
+  })(request, response);
+});
+
+application.get('/droplets/:id/actions', function(request, response) {
+  console.log("Droplet " + request.params.id + " get actions");
+  return (function(request, response) {
+    return digitalocean.droplets.fetchActions(request.params.id, function(error, reply) {
+      return response.send(JSON.stringify(reply.body));
+    });
+  })(request, response);
+});
+
+application.get('/actions/:id', function(request, response) {
+  console.log("Get action " + request.params.id);
+  return (function(request, response) {
+    return digitalocean.actions.fetch(request.params.id, function(error, reply) {
+      return response.send(JSON.stringify(reply.body));
+    });
+  })(request, response);
+});
+
 application.get('/regions', function(request, response) {
   console.log('Regions');
   return digitalocean.regions.list(function(error, reply) {

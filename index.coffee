@@ -66,6 +66,92 @@ application.delete \
 				, (error, reply)->
 					response.send JSON.stringify(reply.body)
 
+# Droplet actions
+application.post \
+	'/droplets/:id/reboot'
+	, (request, response)->
+		console.log "Droplet #{request.params.id} reboot"
+		do (request, response)->
+			digitalocean.dropletActions.reboot \
+				request.params.id
+				, (error, reply)->
+					response.send JSON.stringify(reply.body)
+
+application.post \
+	'/droplets/:id/shutdown'
+	, (request, response)->
+		console.log "Droplet #{request.params.id} shutdown"
+		do (request, response)->
+			digitalocean.dropletActions.shutdown \
+				request.params.id
+				, (error, reply)->
+					response.send JSON.stringify(reply.body)
+
+application.post \
+	'/droplets/:id/power_on'
+	, (request, response)->
+		console.log "Droplet #{request.params.id} power_on"
+		do (request, response)->
+			digitalocean.dropletActions.powerOn \
+				request.params.id
+				, (error, reply)->
+					response.send JSON.stringify(reply.body)
+
+application.post \
+	'/droplets/:id/power_off'
+	, (request, response)->
+		console.log "Droplet #{request.params.id} power_off"
+		do (request, response)->
+			digitalocean.dropletActions.powerOff \
+				request.params.id
+				, (error, reply)->
+					response.send JSON.stringify(reply.body)
+
+application.post \
+	'/droplets/:id/power_cycle'
+	, (request, response)->
+		console.log "Droplet #{request.params.id} power_cycle"
+		do (request, response)->
+			digitalocean.dropletActions.power_cycle \
+				request.params.id
+				, (error, reply)->
+					response.send JSON.stringify(reply.body)
+
+application.post \
+	'/droplets/:id/resize/:size'
+	, (request, response)->
+		console.log "Droplet #{request.params.id} resize to #{request.params.size}"
+		do (request, response)->
+			digitalocean.dropletActions.resize \
+				request.params.id
+				, request.params.size
+				, (error, reply)->
+					response.send JSON.stringify(reply.body)
+
+# Get actions executed on the droplet
+application.get \
+	'/droplets/:id/actions'
+	, (request, response)->
+		console.log "Droplet #{request.params.id} get actions"
+		do (request, response)->
+			digitalocean.droplets.fetchActions \
+				request.params.id
+				, (error, reply)->
+					response.send JSON.stringify(reply.body)
+
+# Get action by id from all actions on the account
+application.get \
+	'/actions/:id'
+	, (request, response)->
+		console.log "Get action #{request.params.id}"
+		do (request, response)->
+			digitalocean.actions.fetch \
+				request.params.id
+				, (error, reply)->
+					response.send JSON.stringify(reply.body)
+
+
+
 # Regions
 application.get \
 	'/regions'
