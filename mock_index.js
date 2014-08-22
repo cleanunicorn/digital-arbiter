@@ -58,43 +58,43 @@ application["delete"]('/droplets/:id', function(request, response) {
 application.get('/actions/:id', function(request, response) {
   console.log("Mock Get action " + request.params.id);
   if (process.argv[2] === 'wip') {
-    response.send('{"action":{"id":30451157,"status":"in-progress","type":"create","started_at":"2014-08-09T10:12:39Z","completed_at":"2014-08-09T10:15:04Z","resource_id":2292375,"resource_type":"droplet","region":"ams1"}}');
+    response.send('{"action":{"id":30451157,"status":"in-progress","type":"reboot","started_at":"2014-08-09T10:12:39Z","completed_at":"2014-08-09T10:15:04Z","resource_id":2269164,"resource_type":"droplet","region":"ams1"}}');
   }
   if (process.argv[2] === 'fail') {
-    return response.send('{"action":{"id":30451157,"status":"errored","type":"create","started_at":"2014-08-09T10:12:39Z","completed_at":"2014-08-09T10:15:04Z","resource_id":2292375,"resource_type":"droplet","region":"ams1"}}');
+    return response.send('{"action":{"id":30451157,"status":"errored","type":"create","started_at":"2014-08-09T10:12:39Z","completed_at":"2014-08-09T10:15:04Z","resource_id":2269164,"resource_type":"droplet","region":"ams1"}}');
   } else {
-    return response.send('{"action":{"id":30451157,"status":"completed","type":"create","started_at":"2014-08-09T10:12:39Z","completed_at":"2014-08-09T10:15:04Z","resource_id":2292375,"resource_type":"droplet","region":"ams1"}}');
+    return response.send('{"action":{"id":30451157,"status":"completed","type":"create","started_at":"2014-08-09T10:12:39Z","completed_at":"2014-08-09T10:15:04Z","resource_id":2269164,"resource_type":"droplet","region":"ams1"}}');
   }
 });
 
 application.post('/droplets/:id/reboot', function(request, response) {
   console.log("Mock Droplet " + request.params.id + " reboot");
-  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"reboot","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+  return response.send('{"action":{"id":30451157,"status":"in-progress","type":"reboot","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2269164,"resource_type":"droplet","region":"ams1"}}');
 });
 
 application.post('/droplets/:id/shutdown', function(request, response) {
   console.log("Mock Droplet " + request.params.id + " shutdown");
-  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"shutdown","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+  return response.send('{"action":{"id":30451157,"status":"in-progress","type":"shutdown","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2269164,"resource_type":"droplet","region":"ams1"}}');
 });
 
 application.post('/droplets/:id/power_on', function(request, response) {
   console.log("Mock Droplet " + request.params.id + " power_on");
-  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"power_on","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+  return response.send('{"action":{"id":30451157,"status":"in-progress","type":"power_on","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2269164,"resource_type":"droplet","region":"ams1"}}');
 });
 
 application.post('/droplets/:id/power_off', function(request, response) {
   console.log("Mock Droplet " + request.params.id + " power_off");
-  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"power_off","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+  return response.send('{"action":{"id":30451157,"status":"in-progress","type":"power_off","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2269164,"resource_type":"droplet","region":"ams1"}}');
 });
 
 application.post('/droplets/:id/power_cycle', function(request, response) {
   console.log("Mock Droplet " + request.params.id + " power_cycle");
-  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"power_cycle","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+  return response.send('{"action":{"id":30451157,"status":"in-progress","type":"power_cycle","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2269164,"resource_type":"droplet","region":"ams1"}}');
 });
 
 application.post('/droplets/:id/resize/:size', function(request, response) {
   console.log("Mock Droplet " + request.params.id + " resize to " + request.params.size);
-  return response.send('{"action":{"id":30590219,"status":"in-progress","type":"resize","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2315448,"resource_type":"droplet","region":"ams1"}}');
+  return response.send('{"action":{"id":30451157,"status":"in-progress","type":"resize","started_at":"2014-08-12T12:51:45Z","completed_at":null,"resource_id":2269164,"resource_type":"droplet","region":"ams1"}}');
 });
 
 application.get('/regions', function(request, response) {

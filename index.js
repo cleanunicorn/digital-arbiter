@@ -30,12 +30,12 @@ application.get('/droplets', function(request, response) {
   })(request, response);
 });
 
-application.post('/droplets', function(request, response) {
-  var droplet_data;
+application.post('/droplets/:size', function(request, response) {
+  var droplet_data, _ref;
   droplet_data = {
     name: digitalocean_config.defaults.name_prefix + uuid.v4(),
     region: digitalocean_config.defaults.region,
-    size: digitalocean_config.defaults.size,
+    size: (_ref = request.params.size) != null ? _ref : digitalocean_config.defaults.size,
     image: digitalocean_config.defaults.image,
     ssh_keys: digitalocean_config.defaults.ssh_keys
   };
@@ -67,7 +67,7 @@ application.post('/droplets/:id/reboot', function(request, response) {
   console.log("Droplet " + request.params.id + " reboot");
   return (function(request, response) {
     return digitalocean.dropletActions.reboot(request.params.id, function(error, reply) {
-      return response.send(JSON.stringify(reply.body));
+      return response.send(reply.res.statusCode, JSON.stringify(reply.body));
     });
   })(request, response);
 });
@@ -76,7 +76,7 @@ application.post('/droplets/:id/shutdown', function(request, response) {
   console.log("Droplet " + request.params.id + " shutdown");
   return (function(request, response) {
     return digitalocean.dropletActions.shutdown(request.params.id, function(error, reply) {
-      return response.send(JSON.stringify(reply.body));
+      return response.send(reply.res.statusCode, JSON.stringify(reply.body));
     });
   })(request, response);
 });
@@ -85,7 +85,7 @@ application.post('/droplets/:id/power_on', function(request, response) {
   console.log("Droplet " + request.params.id + " power_on");
   return (function(request, response) {
     return digitalocean.dropletActions.powerOn(request.params.id, function(error, reply) {
-      return response.send(JSON.stringify(reply.body));
+      return response.send(reply.res.statusCode, JSON.stringify(reply.body));
     });
   })(request, response);
 });
@@ -94,7 +94,7 @@ application.post('/droplets/:id/power_off', function(request, response) {
   console.log("Droplet " + request.params.id + " power_off");
   return (function(request, response) {
     return digitalocean.dropletActions.powerOff(request.params.id, function(error, reply) {
-      return response.send(JSON.stringify(reply.body));
+      return response.send(reply.res.statusCode, JSON.stringify(reply.body));
     });
   })(request, response);
 });
@@ -103,7 +103,7 @@ application.post('/droplets/:id/power_cycle', function(request, response) {
   console.log("Droplet " + request.params.id + " power_cycle");
   return (function(request, response) {
     return digitalocean.dropletActions.power_cycle(request.params.id, function(error, reply) {
-      return response.send(JSON.stringify(reply.body));
+      return response.send(reply.res.statusCode, JSON.stringify(reply.body));
     });
   })(request, response);
 });
@@ -112,7 +112,7 @@ application.post('/droplets/:id/resize/:size', function(request, response) {
   console.log("Droplet " + request.params.id + " resize to " + request.params.size);
   return (function(request, response) {
     return digitalocean.dropletActions.resize(request.params.id, request.params.size, function(error, reply) {
-      return response.send(JSON.stringify(reply.body));
+      return response.send(reply.res.statusCode, JSON.stringify(reply.body));
     });
   })(request, response);
 });
@@ -121,7 +121,7 @@ application.get('/droplets/:id/actions', function(request, response) {
   console.log("Droplet " + request.params.id + " get actions");
   return (function(request, response) {
     return digitalocean.droplets.fetchActions(request.params.id, function(error, reply) {
-      return response.send(JSON.stringify(reply.body));
+      return response.send(reply.res.statusCode, JSON.stringify(reply.body));
     });
   })(request, response);
 });
@@ -130,7 +130,7 @@ application.get('/actions/:id', function(request, response) {
   console.log("Get action " + request.params.id);
   return (function(request, response) {
     return digitalocean.actions.fetch(request.params.id, function(error, reply) {
-      return response.send(JSON.stringify(reply.body));
+      return response.send(reply.res.statusCode, JSON.stringify(reply.body));
     });
   })(request, response);
 });

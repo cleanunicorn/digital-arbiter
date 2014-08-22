@@ -30,12 +30,12 @@ application.get \
 			digitalocean.droplets.list droplets_list
 
 application.post \
-	'/droplets'
+	'/droplets/:size'
 	, (request, response)->
 		droplet_data =
 			name: digitalocean_config.defaults.name_prefix + uuid.v4()
 			region: digitalocean_config.defaults.region
-			size: digitalocean_config.defaults.size
+			size: request.params.size ? digitalocean_config.defaults.size
 			image: digitalocean_config.defaults.image
 			ssh_keys: digitalocean_config.defaults.ssh_keys
 
@@ -75,7 +75,9 @@ application.post \
 			digitalocean.dropletActions.reboot \
 				request.params.id
 				, (error, reply)->
-					response.send JSON.stringify(reply.body)
+					response.send \
+						reply.res.statusCode
+						, JSON.stringify(reply.body)
 
 application.post \
 	'/droplets/:id/shutdown'
@@ -85,7 +87,9 @@ application.post \
 			digitalocean.dropletActions.shutdown \
 				request.params.id
 				, (error, reply)->
-					response.send JSON.stringify(reply.body)
+					response.send \
+						reply.res.statusCode
+						, JSON.stringify(reply.body)
 
 application.post \
 	'/droplets/:id/power_on'
@@ -95,7 +99,9 @@ application.post \
 			digitalocean.dropletActions.powerOn \
 				request.params.id
 				, (error, reply)->
-					response.send JSON.stringify(reply.body)
+					response.send \
+						reply.res.statusCode
+						, JSON.stringify(reply.body)
 
 application.post \
 	'/droplets/:id/power_off'
@@ -105,7 +111,9 @@ application.post \
 			digitalocean.dropletActions.powerOff \
 				request.params.id
 				, (error, reply)->
-					response.send JSON.stringify(reply.body)
+					response.send \
+						reply.res.statusCode
+						, JSON.stringify(reply.body)
 
 application.post \
 	'/droplets/:id/power_cycle'
@@ -115,7 +123,9 @@ application.post \
 			digitalocean.dropletActions.power_cycle \
 				request.params.id
 				, (error, reply)->
-					response.send JSON.stringify(reply.body)
+					response.send \
+						reply.res.statusCode
+						, JSON.stringify(reply.body)
 
 application.post \
 	'/droplets/:id/resize/:size'
@@ -126,7 +136,9 @@ application.post \
 				request.params.id
 				, request.params.size
 				, (error, reply)->
-					response.send JSON.stringify(reply.body)
+					response.send \
+						reply.res.statusCode
+						, JSON.stringify(reply.body)
 
 # Get actions executed on the droplet
 application.get \
@@ -137,7 +149,9 @@ application.get \
 			digitalocean.droplets.fetchActions \
 				request.params.id
 				, (error, reply)->
-					response.send JSON.stringify(reply.body)
+					response.send \
+						reply.res.statusCode
+						, JSON.stringify(reply.body)
 
 # Get action by id from all actions on the account
 application.get \
@@ -148,8 +162,9 @@ application.get \
 			digitalocean.actions.fetch \
 				request.params.id
 				, (error, reply)->
-					response.send JSON.stringify(reply.body)
-
+					response.send \
+						reply.res.statusCode
+						, JSON.stringify(reply.body)
 
 
 # Regions
